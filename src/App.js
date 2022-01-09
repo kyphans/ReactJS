@@ -1,19 +1,11 @@
-import { useState } from 'react'
-import Content from './Content'
-
+import TodoApp from './features/Todo';
 
 function App() {
-  const [toggle,setToggle] = useState(false)
 
-
-  const handelToggle = () => {
-    setToggle(!toggle)
-  }
 
   return (
-    <div className="App" style={{padding:20}}>
-     <button onClick={handelToggle}>Toggle</button>
-     {toggle && <Content/>}
+    <div className="App" style={{ padding: 20 }}>
+      <TodoApp />
     </div>
   );
 }
