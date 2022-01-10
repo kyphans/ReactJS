@@ -1,3 +1,4 @@
+import ColorBox from './features/ColorBox';
 import TodoApp from './features/Todo';
 
 function App() {
@@ -5,7 +6,8 @@ function App() {
 
   return (
     <div className="App" style={{ padding: 20 }}>
-      <TodoApp />
+      {/* <TodoApp /> */}
+      <ColorBox />
     </div>
   );
 }
