@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import PostList from './components/PostList';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
@@ -13,7 +14,26 @@ function TodoListApp(props) {
         { id: 4, title: 'Hang out with friends' },
     ])
 
+    const [postList, setPostList] = useState([])
 
+    useEffect(() => {
+        async function fetchPostList() {
+            try {
+
+                const requestUrl = 'http://js-post-api.herokuapp.com/api/posts?_limit=10&_page=1'
+                const response = await fetch(requestUrl);
+                const responseJSON = await response.json();
+                console.log({ responseJSON });
+                const { data } = responseJSON;
+                setPostList(data)
+
+            }
+            catch (error) {
+                console.log(error.message);
+            }
+        }
+        fetchPostList()
+    }, [])
 
     const handleRomoveTodo = (todo) => {
         // console.log(todoList);
@@ -41,12 +61,15 @@ function TodoListApp(props) {
 
     return (
         <div>
-            <TodoForm
+            {/* <TodoForm
                 onSubmit={handleSubmit}
             />
             <TodoList
                 todoList={todoList}
                 onRemove={handleRomoveTodo}
+            /> */}
+            <PostList
+                posts={postList}
             />
         </div>
     );
