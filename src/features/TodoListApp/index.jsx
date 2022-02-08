@@ -4,6 +4,7 @@ import PostList from './components/PostList';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import queryString from 'query-string';
+import PostFiltersForm from './components/PostFiltersForm';
 
 
 function TodoListApp(props) {
@@ -32,7 +33,6 @@ function TodoListApp(props) {
     useEffect(() => {
         async function fetchPostList() {
             try {
-
                 const parramsString = queryString.stringify(filters)
                 const requestUrl = `http://js-post-api.herokuapp.com/api/posts?${parramsString}`
                 const response = await fetch(requestUrl);
@@ -81,6 +81,15 @@ function TodoListApp(props) {
         setTodoList(newTodoList)
     }
 
+    const handleFilterChange = (newFilters) => {
+        console.log('New filters: ', newFilters);
+        setFilters({
+            ...filters,
+            _page: 1,
+            title_like: newFilters.searchTerm,
+        })
+    }
+
     return (
         <div>
             {/* <TodoForm
@@ -90,6 +99,9 @@ function TodoListApp(props) {
                 todoList={todoList}
                 onRemove={handleRomoveTodo}
             /> */}
+            <PostFiltersForm
+                onSubmit={handleFilterChange}
+            />
             <PostList
                 posts={postList}
             />

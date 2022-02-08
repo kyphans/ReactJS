@@ -1,9 +1,11 @@
-import TodoListApp from './features/TodoListApp';
+import MagicBox from './features/MagicBox';
+// import TodoListApp from './features/TodoListApp';
 
 function App() {
   return (
     <div className="App" style={{ padding: 20 }}>
-      <TodoListApp />
+      <MagicBox />
+      {/* <TodoListApp /> */}
     </div>
   );
 }
