@@ -56,7 +56,7 @@ function TodoApp(props) {
             <h3>TODO LIST</h3>
             <TodoList
                 onTodoClick={handleTodoClick}
-                todoList={renderTodoList}
+                todoList={4}
             />
             <button onClick={handelShowAll}>Show all</button>
             <button onClick={handelShowCompleted}>Show completed</button>
